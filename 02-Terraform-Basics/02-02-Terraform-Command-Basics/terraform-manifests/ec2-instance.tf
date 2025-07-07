@@ -2,7 +2,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
       #version = "~> 5.31" # Optional but recommended in production
     }
   }
@@ -16,6 +16,9 @@ provider "aws" {
 
 # Resource Block
 resource "aws_instance" "ec2demo" {
-  ami           = "ami-0533f2ba8a1995cf9" # Amazon Linux in us-east-1, update as per your region
-  instance_type = "t2.micro"
+  ami                     = "ami-0533f2ba8a1995cf9" # Amazon Linux in us-east-1, update as per your region
+  instance_type           = "t2.micro"
+  tenancy                 = "dedicated"
+  disable_api_termination = true
+  monitoring              = true
 }
